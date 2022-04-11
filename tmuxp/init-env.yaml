@@ -1,0 +1,17 @@
+session_name: local-dev
+windows:
+- layout: main-vertical
+  window_name: 3-pane-main
+  options:
+    main-pane-width: 150
+  panes:
+  - blank
+  - focus: true
+  - blank
+- layout: main-vertical
+  window_name: 2-up-logs
+  options:
+    main-pane-width: 150
+  panes:
+  - focus: true
+  - blank
