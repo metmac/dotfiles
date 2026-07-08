@@ -1,0 +1,9 @@
+# Minimal image for the containerized `pnpm` wrapper (see ~/.config/shell/wrappers.sh).
+# Built automatically on first `pnpm` use as localhost/pnpm-sandbox:latest.
+FROM node:lts-alpine
+
+# Enable pnpm via corepack (ships with Node).
+RUN corepack enable && corepack prepare pnpm@latest --activate
+
+WORKDIR /work
+ENTRYPOINT ["pnpm"]

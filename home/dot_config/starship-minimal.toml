@@ -1,0 +1,16 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Minimal prompt used by the `repl` shell function — single line, almost no
+# color, no language/git noise. Just enough to know where you are.
+
+add_newline = false
+format = "$directory$character"
+
+[directory]
+truncation_length = 1
+truncate_to_repo = false
+style = "dimmed cyan"
+
+[character]
+success_symbol = "[❯](dimmed green)"
+error_symbol = "[❯](dimmed red)"

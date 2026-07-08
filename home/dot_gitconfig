@@ -1,0 +1,52 @@
+[user]
+	name = Michael Metcalf
+	email = metmac@mac.com
+[core]
+	editor = vim
+	excludesfile = ~/.gitignore_global
+[init]
+	defaultBranch = main
+[push]
+	default = current
+	autoSetupRemote = true
+[pull]
+	ff = only
+[fetch]
+	prune = true
+[credential "https://github.com"]
+	helper =
+	helper = !gh auth git-credential
+[credential "https://gist.github.com"]
+	helper =
+	helper = !gh auth git-credential
+[alias]
+	l = log --oneline -20 --reverse
+	lg = log --oneline -20 --graph --abbrev-commit
+	last = log -1 HEAD
+	s = status -s
+	sb = status -sb
+	st = status -sb
+	co = checkout
+	cb = checkout -b
+	br = branch
+	ci = commit
+	ca = !git add -A && git commit
+	cam = commit -am
+	di = diff
+	dc = diff --cached
+	fe = fetch
+	pl = pull
+	ps = push
+	pub = !git push -u origin $(git bn)
+	bn = !git rev-parse --abbrev-ref HEAD
+	un = reset HEAD~1 --mixed
+	rh = reset --hard
+	sh = stash
+	sa = stash apply
+	dm = !git checkout $(git mainbranch) && git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d
+	mainbranch = !git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@'
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

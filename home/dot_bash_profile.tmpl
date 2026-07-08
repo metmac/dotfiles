@@ -1,0 +1,13 @@
+# ~/.bash_profile — bash login shell
+# Order: brew env -> shared env -> interactive rc (for login+interactive shells)
+
+{{ if eq .chezmoi.os "darwin" -}}
+eval "$(/opt/homebrew/bin/brew shellenv)"
+{{ else -}}
+[ -x /home/linuxbrew/.linuxbrew/bin/brew ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+{{ end -}}
+
+[ -r "$HOME/.config/shell/env.sh" ] && . "$HOME/.config/shell/env.sh"
+
+# macOS Terminal/iTerm start login shells, so source the interactive rc here.
+[ -r "$HOME/.bashrc" ] && . "$HOME/.bashrc"

@@ -1,0 +1,19 @@
+# ~/.zshrc — interactive zsh
+# Bash is still the default login shell; this exists so zsh "just works" when you
+# want to dip into it.
+
+# Ensure env is loaded for non-login interactive shells
+[ -r "$HOME/.config/shell/env.sh" ] && . "$HOME/.config/shell/env.sh"
+
+# zsh completion system — must init BEFORE shared init.sh sources tool completions
+autoload -Uz compinit && compinit -i
+
+# Shared interactive pieces (same files bash uses)
+for _f in aliases functions wrappers init; do
+  [ -r "$HOME/.config/shell/$_f.sh" ] && . "$HOME/.config/shell/$_f.sh"
+done
+unset _f
+
+# Sensible zsh history options
+setopt INC_APPEND_HISTORY SHARE_HISTORY HIST_IGNORE_DUPS HIST_IGNORE_SPACE
+HISTFILE="$HOME/.zsh_history"
