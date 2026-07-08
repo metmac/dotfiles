@@ -1,0 +1,18 @@
+// ~/.config/zellij/layouts/dev.kdl
+// Ported from the old tmuxp init-env.yaml "local-dev" session: a wide main pane
+// with a stacked side column, plus a logs tab. Launch with:  zellij --layout dev
+layout {
+    tab name="dev" focus=true {
+        pane split_direction="vertical" {
+            pane size="65%" name="main"
+            pane split_direction="horizontal" {
+                pane name="aux"
+                pane name="logs"
+            }
+        }
+    }
+    tab name="logs" {
+        pane size="70%" name="app"
+        pane name="tail"
+    }
+}

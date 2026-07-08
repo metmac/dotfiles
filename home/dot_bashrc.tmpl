@@ -1,0 +1,18 @@
+# ~/.bashrc — interactive bash
+# Return early if not interactive (scp/rsync etc.)
+case $- in *i*) ;; *) return ;; esac
+
+# Ensure env is loaded even for non-login interactive shells
+[ -r "$HOME/.config/shell/env.sh" ] && . "$HOME/.config/shell/env.sh"
+
+# bash completion framework (homebrew) — load BEFORE shared init.sh so tool
+# completions (bd/nono) can register against it.
+{{ if eq .chezmoi.os "darwin" -}}
+[ -r "$HOMEBREW_PREFIX/etc/profile.d/bash_completion.sh" ] && . "$HOMEBREW_PREFIX/etc/profile.d/bash_completion.sh"
+{{ end -}}
+
+# Shared interactive pieces
+for _f in aliases functions wrappers init; do
+  [ -r "$HOME/.config/shell/$_f.sh" ] && . "$HOME/.config/shell/$_f.sh"
+done
+unset _f
